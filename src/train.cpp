@@ -24,15 +24,15 @@ first->next = first->prev = nullptr;
 } else {
 if (!first->next) {
 first->next = new Cage;
-first->prew = first->next;
+first->prev = first->next;
 first->next->next = first;
-first->next->prew = first;
+first->next->prev = first;
 } else {
 Cage* current = first->prev;
 current->next = new Cage;
 current->next->next = first;
-current->next->prew = current;
-first->prew = current->next;
+current->next->prev = current;
+first->prev = current->next;
 }
 }
 }
@@ -49,7 +49,7 @@ length_way++;
 int length_fixed = length_way;
 countOp += length_way;
 current->light = false;
-While (length_way > 1) {
+while (length_way > 1) {
 current = current->prev;
 length_way--;
 countOp++;
