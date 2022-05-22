@@ -41,22 +41,26 @@ int Train::getLength() {
  Cage* current = first;
  current->light = true;
  while (true) {
-        int length_way = 0;
-        do {
-            current = current->next;
-            length_way++;
-        } while (!current->light);
-        int length_fixed = length_way;
-        countOp += length_way;
-        current->light = false;
-        while (length_way) {
-            current = current->prev;
-            length_way--;
-            countOp++;
-        }
-        length_way = 0;
-        if (!current->light) {
-            return length_fixed;
-        }
-    }
+  int length_way = 0;
+  do {
+   current = current->next;
+   length_way++;
+  } while (!current->light);
+  int length_fixed = length_way;
+  countOp += length_way;
+  current->light = false;
+  while (length_way > 1) {
+   current = current->prev;
+   length_way--;
+   countOp++;
+  }
+  length_way = 0;
+  if (!current->light) {
+   return length_fixed;
+  }
+ }
+}
+
+int Train::getOpCount() {
+ return countOp;
 }
